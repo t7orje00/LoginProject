@@ -49,5 +49,14 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  }
+  },
+  "browser": {
+    "http": false,
+    "https":false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false,
+    "crypto": false
+}
 }

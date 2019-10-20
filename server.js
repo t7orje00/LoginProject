@@ -43,7 +43,7 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/users", function(req, res) {
+app.get("/user-db", function(req, res) {
   collection.find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get users.");
@@ -53,7 +53,7 @@ app.get("/users", function(req, res) {
   });
 });
 
-app.post("/users", function(req, res) {
+app.post("/user-db", function(req, res) {
   var newUser = req.body;
   newUser.createDate = new Date();
 
@@ -76,7 +76,7 @@ app.post("/users", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/users/:id", function(req, res) {
+app.get("/user-db/:id", function(req, res) {
   collection.findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get user");
@@ -86,7 +86,7 @@ app.get("/users/:id", function(req, res) {
   });
 });
 
-app.get("/users/:name", function(req, res) {
+app.get("/user-db/:name", function(req, res) {
   collection.findOne({ _id: new ObjectID(req.params.name) }, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get user");
@@ -96,7 +96,7 @@ app.get("/users/:name", function(req, res) {
   });
 });
 
-app.put("/users/:id", function(req, res) {
+app.put("/user-db/:id", function(req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
@@ -109,7 +109,7 @@ app.put("/users/:id", function(req, res) {
   });
 });
 
-app.delete("/users/:id", function(req, res) {
+app.delete("/user-db/:id", function(req, res) {
   collection.deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
     if (err) {
       handleError(res, err.message, "Failed to delete user");
