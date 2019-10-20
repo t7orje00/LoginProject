@@ -21,7 +21,7 @@ import {HttpClient,HttpHeaders, HttpErrorResponse} from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
