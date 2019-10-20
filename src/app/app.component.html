@@ -10,12 +10,12 @@
   <hr>
 </div>
 <h3 style="color:#111">( Redirect to this page if user is not logged in ) </h3>
-<ul style="font-size:10pt;color:#333">
-  <li *ngIf="this._userData.getUserData() == null">
-    <h2>
-      <a rel="noopener" routerLink="login" (click)="setView('login')";>Login</a>
-    </h2>
-  </li>
+
+<button (click)="setView('login')">Login</button>
+
+    <h3 *ngIf="this._userData.getUserData() == null"
+      style="color:#111" (click)="setView('login')";>Login</h3>
+
   <li *ngIf="this._userData.getUserData() != null">
     <h2>
       <a rel="noopener" routerLink="logout" (click)="setView('logout')";>Logout</a>
@@ -27,13 +27,11 @@
     </h2>
   </li>
 
-</ul>
+  <div *ngIf="this._userData.getView() == 'login'">
+    <app-login-ui></app-login-ui>
+  </div>
 
-
-<div style="width: 100%" *ngIf="this._userData.getView() == 'register'">
+  <div *ngIf="this._userData.getView() == 'register'">
     <app-register-ui></app-register-ui>
-</div>
-<div style="width: 100%" *ngIf="this._userData.getView() == 'login'">
-  <app-login-ui></app-login-ui>
-</div>
+  </div>
 
