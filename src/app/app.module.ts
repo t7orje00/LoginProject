@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginUiComponent } from './login-ui/login-ui.component';
 import { RegisterUiComponent } from './register-ui/register-ui.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import {HttpClient,HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
