@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { UserService } from '../users/user.service';
 import { User } from '../users/user';
 import { Login } from '../users/login';
-import {UserDataService} from 'app/app.component.service';
+import {UserDataService} from '../app.component.service';
 
 
 @Component({
