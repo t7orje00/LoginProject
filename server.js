@@ -22,9 +22,9 @@ MongoClient.connect(uri, function(err, client) {
   }
 
   console.log('Connected...');
-  collection = client.db("cluster0").collection("user-db");
+  collection = client.db("Cluster0").collection("user-db");
 
-  var server = app.listen(process.env.PORT || 8080, function () {
+  var server = app.listen(process.env.PORT || 4200, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
   });
@@ -43,8 +43,18 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/user-db", function(req, res) {
-  collection.find({}).toArray(function(err, docs) {
+app.get("/user-db/id/:id", function(req, res) {
+  collection.findOne({_id: new ObjectID(req.params.id)}, function(err, docs) {
+    if (err) {
+      handleError(res, err.message, "Failed to get user.");
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
+
+app.get("/user-db/email/:email", function(req, res) {
+  collection.findOne({email: req.params.email}), (function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get users.");
     } else {
@@ -53,13 +63,9 @@ app.get("/user-db", function(req, res) {
   });
 });
 
+
 app.post("/user-db", function(req, res) {
   var newUser = req.body;
-  newUser.createDate = new Date();
-
-  if (!(req.body.name)) {
-    handleError(res, "Invalid user input", "Must provide an username.", 400);
-  }
 
   collection.insertOne(newUser, function(err, doc) {
     if (err) {

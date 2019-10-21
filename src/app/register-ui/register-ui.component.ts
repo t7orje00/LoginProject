@@ -25,7 +25,8 @@ export class RegisterUiComponent implements OnInit {
   }
 
   createUser(user: User) {
-    this.userService.getUserByName(user.name).then((dbreturn: User) => {
+    console.log(user);
+    this.userService.getUserByEmail(user.email).then((dbreturn: User) => {
       if (dbreturn == null) {
         const bcrypt = require('bcryptjs');
         let salt = bcrypt.genSaltSync(10);

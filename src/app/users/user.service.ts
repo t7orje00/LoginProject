@@ -6,25 +6,25 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 
 @Injectable()
 export class UserService {
-    private usersUrl = '/api/users';
-    private nameUrl = '/name';
+    private usersUrl = '/user-db';
+    private emailUrl = '/email';
     private idUrl = '/id';
 
-    constructor (private http: Http) {}
+    constructor (private http: HttpClient) {}
 
 
-    getUsers(): Promise<void | User[]> {
+    getUsers(): Promise<User[]> {
       return this.http.get(this.usersUrl)
                  .toPromise()
-                 .then(response => response.json() as User[])
+                 .then(response => response as User[])
                  .catch(this.handleError);
     }
 
 
-    createUser(newUser: User): Promise<void | User> {
+    createUser(newUser: User): Promise<User> {
       return this.http.post(this.usersUrl, newUser)
                  .toPromise()
-                 .then(response => response.json() as User)
+                 .then(response => response as User)
                  .catch(this.handleError);
     }
 
@@ -45,17 +45,19 @@ export class UserService {
                  .catch(this.handleError);
     }*/
 
+
+    getUserByEmail(getEmail: String): Promise<User> {
+      return this.http.get(this.usersUrl + this.emailUrl + '/' + getEmail)
+                 .toPromise()
+                 .then(response => response as User)
+                 .catch(this.handleError);
+    }
+
     private handleError (error: any) {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
       console.error(errMsg); // log to console instead
-    }
-
-    getUserByName(getUserName: String): Promise<void | User> {
-      return this.http.get(this.usersUrl + this.nameUrl + '/' + getUserName)
-                 .toPromise()
-                 .then(response => response.json() as User)
-                 .catch(this.handleError);
+      return Promise.reject(errMsg);
     }
 
 }

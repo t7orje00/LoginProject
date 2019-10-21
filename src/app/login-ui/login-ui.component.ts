@@ -30,7 +30,7 @@ export class LoginUiComponent {
     public _userData: UserDataService) { }
 
   loginAttempt(loginUser: User) {
-      this.userService.getUserByName(loginUser.name).then((dbuser: User) => {
+      this.userService.getUserByEmail(loginUser.email).then((dbuser: User) => {
         const bcrypt = require('bcryptjs');
         if (dbuser == null) {
           this.loginsuccess = -1;
