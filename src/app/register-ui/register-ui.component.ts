@@ -39,7 +39,7 @@ export class RegisterUiComponent implements OnInit {
           pass: ''
         };
       } else {
-        this.user.name = '';
+        this.user.email = '';
         this.createsuccess = -1;
       }
     });

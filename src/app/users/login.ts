@@ -1,6 +1,6 @@
 export class Login {
   _id?: string;
-  name: string;
+  email: string;
   pass: string;
 }
 

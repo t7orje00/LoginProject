@@ -15,7 +15,7 @@ import {UserDataService} from '../app.component.service';
 export class LoginUiComponent {
 
   loginUser: Login = {
-    name: '',
+    email: '',
     pass: ''
   };
 
@@ -41,7 +41,7 @@ export class LoginUiComponent {
               this.loginsuccess = 1;
               this._userData.setUserData(dbuser);
               this.loginUser = {
-              name: '',
+              email: '',
               pass: ''
               };
               this._userData.setView('start');
